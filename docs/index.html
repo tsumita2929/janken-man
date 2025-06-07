@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>じゃんけんマン - スペースバトル</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="particles-js"></div>
+    <div class="stars"></div>
+    <div class="twinkling"></div>
+    
+    <!-- タイトル画面 -->
+    <div id="title-screen" class="screen active">
+        <div class="title-container animate__animated animate__fadeInDown">
+            <h1 class="game-title">
+                <i class="fas fa-rocket"></i>
+                じゃんけんマン
+                <span class="subtitle">SPACE BATTLE</span>
+            </h1>
+            <button id="start-button" class="btn btn-primary">
+                <i class="fas fa-play"></i> バトル開始
+            </button>
+            <div class="game-rules">
+                <h3><i class="fas fa-info-circle"></i> バトルルール</h3>
+                <ul>
+                    <li>1回限りの真剣勝負！</li>
+                    <li>勝利・引き分け・敗北の結果を表示</li>
+                    <li>宇宙最強のじゃんけんマスターを目指せ！</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ゲーム画面 -->
+    <div id="game-screen" class="screen">
+        <div class="game-container animate__animated animate__fadeIn">
+            <div class="battle-area">
+                <div class="player-area">
+                    <h3><i class="fas fa-user-astronaut"></i> プレイヤー</h3>
+                    <div id="player-hand" class="hand-display">
+                        <i class="fas fa-question"></i>
+                    </div>
+                </div>
+                
+                <div class="vs-area">
+                    <div class="vs-text">
+                        <i class="fas fa-bolt"></i>
+                        <span>VS</span>
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div id="result-text" class="result-text"></div>
+                </div>
+                
+                <div class="opponent-area">
+                    <h3><i class="fas fa-robot"></i> エイリアン</h3>
+                    <div id="opponent-hand" class="hand-display">
+                        <i class="fas fa-question"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="controls" id="game-controls">
+                <button id="rock-btn" class="hand-btn" data-hand="rock">
+                    <span class="hand-icon">✊</span>
+                    <span class="hand-name">ロック</span>
+                </button>
+                <button id="paper-btn" class="hand-btn" data-hand="paper">
+                    <span class="hand-icon">✋</span>
+                    <span class="hand-name">ペーパー</span>
+                </button>
+                <button id="scissors-btn" class="hand-btn" data-hand="scissors">
+                    <span class="hand-icon">✌️</span>
+                    <span class="hand-name">シザー</span>
+                </button>
+            </div>
+
+            <!-- バトル結果表示エリア -->
+            <div id="battle-result" class="battle-result hidden">
+                <div class="result-content">
+                    <div id="battle-outcome" class="battle-outcome"></div>
+                    <div class="result-buttons">
+                        <button id="retry-button" class="btn btn-primary">
+                            <i class="fas fa-redo"></i> もう一度バトル
+                        </button>
+                        <button id="title-button" class="btn btn-secondary">
+                            <i class="fas fa-home"></i> ホーム
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

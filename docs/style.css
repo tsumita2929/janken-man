@@ -1,0 +1,511 @@
+/* スペーステーマ基本スタイル */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Orbitron', 'Arial', sans-serif;
+    background: #0a0a0a;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    overflow: hidden;
+    position: relative;
+}
+
+/* 星空背景アニメーション */
+#particles-js {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+}
+
+.stars, .twinkling {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    z-index: -1;
+}
+
+.stars {
+    background: #000 url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 300 300"><defs><radialGradient id="star" cx="50%" cy="50%" r="50%"><stop offset="0%" style="stop-color:white;stop-opacity:1" /><stop offset="100%" style="stop-color:white;stop-opacity:0" /></radialGradient></defs><circle cx="50" cy="50" r="1" fill="url(%23star)"/><circle cx="150" cy="100" r="0.5" fill="url(%23star)"/><circle cx="250" cy="150" r="1" fill="url(%23star)"/><circle cx="100" cy="200" r="0.5" fill="url(%23star)"/><circle cx="200" cy="250" r="1" fill="url(%23star)"/><circle cx="75" cy="75" r="0.8" fill="url(%23star)"/><circle cx="175" cy="175" r="0.6" fill="url(%23star)"/><circle cx="25" cy="125" r="0.4" fill="url(%23star)"/><circle cx="275" cy="75" r="0.9" fill="url(%23star)"/><circle cx="125" cy="275" r="0.7" fill="url(%23star)"/></svg>') repeat;
+    animation: move-stars 200s linear infinite;
+}
+
+.twinkling {
+    background: transparent url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><circle cx="50" cy="50" r="1" fill="%2300d4ff" opacity="0.8"><animate attributeName="opacity" values="0.3;1;0.3" dur="3s" repeatCount="indefinite"/></circle><circle cx="150" cy="100" r="0.5" fill="%23ff6b6b" opacity="0.6"><animate attributeName="opacity" values="0.2;0.8;0.2" dur="2s" repeatCount="indefinite"/></circle><circle cx="100" cy="150" r="1" fill="%23ffd700" opacity="0.9"><animate attributeName="opacity" values="0.4;1;0.4" dur="2.5s" repeatCount="indefinite"/></circle><circle cx="25" cy="175" r="0.3" fill="%2300d4ff" opacity="0.7"><animate attributeName="opacity" values="0.1;0.9;0.1" dur="4s" repeatCount="indefinite"/></circle><circle cx="175" cy="25" r="0.8" fill="%23ff6b6b" opacity="0.5"><animate attributeName="opacity" values="0.2;0.7;0.2" dur="3.5s" repeatCount="indefinite"/></circle></svg>') repeat;
+    animation: move-twinkle 300s linear infinite;
+}
+
+@keyframes move-stars {
+    from { transform: translateY(0px); }
+    to { transform: translateY(-2000px); }
+}
+
+@keyframes move-twinkle {
+    from { transform: translateY(0px); }
+    to { transform: translateY(-2000px); }
+}
+
+/* 画面管理 */
+.screen {
+    display: none;
+    width: 100%;
+    max-width: 900px;
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.screen.active {
+    display: block;
+}
+
+/* ボタン共通スタイル */
+.btn {
+    padding: 15px 30px;
+    border: 2px solid #00d4ff;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 10px;
+    background: linear-gradient(45deg, #1a1a2e, #16213e);
+    color: #00d4ff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.btn:hover {
+    background: linear-gradient(45deg, #0f3460, #16213e);
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+    transform: translateY(-2px);
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+    border-color: #ff6b6b;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(45deg, #ff5252, #ff3838);
+    box-shadow: 0 0 20px rgba(255, 107, 107, 0.5);
+}
+
+.btn-secondary {
+    background: linear-gradient(45deg, #6c5ce7, #a29bfe);
+    border-color: #6c5ce7;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: linear-gradient(45deg, #5f3dc4, #7c4dff);
+    box-shadow: 0 0 20px rgba(108, 92, 231, 0.5);
+}
+
+.btn-next {
+    background: linear-gradient(45deg, #00b894, #00cec9);
+    border-color: #00b894;
+    color: white;
+    font-size: 18px;
+    padding: 20px 40px;
+}
+
+.btn-next:hover {
+    background: linear-gradient(45deg, #00a085, #00b7c2);
+    box-shadow: 0 0 25px rgba(0, 184, 148, 0.6);
+}
+
+/* タイトル画面 */
+.title-container {
+    background: rgba(26, 26, 46, 0.9);
+    padding: 50px;
+    border-radius: 30px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 212, 255, 0.3);
+    border: 2px solid rgba(0, 212, 255, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+.game-title {
+    font-size: 4em;
+    background: linear-gradient(45deg, #00d4ff, #ff6b6b, #00d4ff);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 30px;
+    text-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+    animation: gradient-shift 3s ease-in-out infinite;
+}
+
+.subtitle {
+    display: block;
+    font-size: 0.4em;
+    color: #00d4ff;
+    margin-top: 10px;
+    letter-spacing: 3px;
+}
+
+.game-rules {
+    margin-top: 40px;
+    text-align: left;
+    background: rgba(0, 212, 255, 0.1);
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 212, 255, 0.3);
+}
+
+.game-rules h3 {
+    color: #00d4ff;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 1.3em;
+}
+
+.game-rules ul {
+    list-style: none;
+    line-height: 2;
+}
+
+.game-rules li {
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 10px;
+}
+
+.game-rules li::before {
+    content: '▶';
+    position: absolute;
+    left: 0;
+    color: #ff6b6b;
+}
+
+/* ゲーム画面 */
+.game-container {
+    background: rgba(26, 26, 46, 0.95);
+    padding: 40px;
+    border-radius: 30px;
+    box-shadow: 0 20px 60px rgba(0, 212, 255, 0.3);
+    border: 2px solid rgba(0, 212, 255, 0.3);
+    backdrop-filter: blur(15px);
+}
+
+/* バトルエリア */
+.battle-area {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 50px 0;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.player-area, .opponent-area {
+    text-align: center;
+    flex: 1;
+    min-width: 200px;
+}
+
+.player-area h3, .opponent-area h3 {
+    margin-bottom: 20px;
+    color: #00d4ff;
+    font-size: 1.2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.hand-display {
+    font-size: 5em;
+    width: 150px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(45deg, #1a1a2e, #16213e);
+    border-radius: 50%;
+    margin: 0 auto;
+    border: 3px solid #00d4ff;
+    transition: all 0.5s ease;
+    box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+}
+
+.hand-display i {
+    color: #00d4ff;
+}
+
+.vs-area {
+    text-align: center;
+    margin: 0 20px;
+}
+
+.vs-text {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #ff6b6b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.result-text {
+    font-size: 1.8em;
+    font-weight: bold;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+}
+
+.result-text.win {
+    color: #00b894;
+    background: rgba(0, 184, 148, 0.2);
+    box-shadow: 0 0 20px rgba(0, 184, 148, 0.3);
+}
+
+.result-text.lose {
+    color: #ff6b6b;
+    background: rgba(255, 107, 107, 0.2);
+    box-shadow: 0 0 20px rgba(255, 107, 107, 0.3);
+}
+
+.result-text.draw {
+    color: #ffd700;
+    background: rgba(255, 215, 0, 0.2);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+}
+
+/* コントロール */
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+.hand-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 25px;
+    background: linear-gradient(45deg, #1a1a2e, #16213e);
+    border: 3px solid #00d4ff;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 120px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hand-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent, rgba(0, 212, 255, 0.1), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s;
+}
+
+.hand-btn:hover::before {
+    transform: translateX(100%);
+}
+
+.hand-btn:hover {
+    background: linear-gradient(45deg, #0f3460, #16213e);
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 212, 255, 0.4);
+}
+
+.hand-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.hand-icon {
+    font-size: 3em;
+    margin-bottom: 10px;
+}
+
+.hand-name {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #00d4ff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* バトル結果表示 */
+.battle-result {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+    transition: all 0.5s ease;
+}
+
+.battle-result.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.result-content {
+    text-align: center;
+    padding: 40px;
+    background: linear-gradient(45deg, #1a1a2e, #16213e);
+    border-radius: 25px;
+    border: 2px solid #00d4ff;
+    box-shadow: 0 20px 40px rgba(0, 212, 255, 0.3);
+}
+
+.battle-outcome {
+    font-size: 3em;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.result-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* アニメーション効果 */
+@keyframes gradient-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+.hand-display.animate {
+    animation: battle-pulse 0.8s ease;
+}
+
+@keyframes battle-pulse {
+    0% { transform: scale(1); }
+    25% { transform: scale(1.1); box-shadow: 0 0 30px rgba(0, 212, 255, 0.6); }
+    50% { transform: scale(1.2); box-shadow: 0 0 40px rgba(0, 212, 255, 0.8); }
+    75% { transform: scale(1.1); box-shadow: 0 0 30px rgba(0, 212, 255, 0.6); }
+    100% { transform: scale(1); }
+}
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+    .game-title {
+        font-size: 2.5em;
+    }
+    
+    .battle-area {
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .vs-area {
+        order: 2;
+        margin: 30px 0;
+    }
+    
+    .hand-display {
+        font-size: 4em;
+        width: 120px;
+        height: 120px;
+    }
+    
+    .controls {
+        gap: 15px;
+    }
+    
+    .hand-btn {
+        min-width: 100px;
+        padding: 20px;
+    }
+    
+    .hand-icon {
+        font-size: 2.5em;
+    }
+    
+    .game-header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .title-container, .game-container, .result-container {
+        padding: 30px 20px;
+    }
+    
+    .result-container h2 {
+        font-size: 2em;
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .screen {
+        padding: 10px;
+    }
+    
+    .game-title {
+        font-size: 2em;
+    }
+    
+    .hand-btn {
+        min-width: 80px;
+        padding: 15px;
+    }
+    
+    .btn {
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+}
