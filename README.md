@@ -2,6 +2,8 @@
 
 Amazon Q Developerで作成されたシンプルなWebベースのじゃんけんゲームです。
 
+[GitHub Pagesリンク](https://tsumita2929.github.io/janken-man)
+
 ## Amazon Q Developerについて
 
 このゲームは**Amazon Q Developer**を使用して開発されました。Amazon Q DeveloperはAWSが提供するAIアシスタントで、以下の特徴があります：
